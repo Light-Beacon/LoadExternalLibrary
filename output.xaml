@@ -1,0 +1,152 @@
+<StackPanel Margin="0,-10,0,0" 
+xmlns:sys="clr-namespace:System;assembly=mscorlib" 
+xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+xmlns:local="clr-namespace:PCL;assembly=Plain Craft Launcher 2">
+<StackPanel.Triggers>
+</StackPanel.Triggers>
+<StackPanel.Resources>
+<Style TargetType="ListItem"><Setter Property="Foreground" Value="{DynamicResource ColorBrush1}"/><Setter Property="Margin" Value="0,4"/></Style>
+<Style TargetType="List"><Setter Property="Foreground" Value="{DynamicResource ColorBrush3}"/><Setter Property="Margin" Value="20,6,0,6"/><Setter Property="MarkerStyle" Value="1"/><Setter Property="Padding" Value="0"/></Style>
+<Style TargetType="Paragraph"><Setter Property="LineHeight" Value="12"/><Setter Property="TextIndent" Value="0"/><Setter Property="Margin" Value="0,8"/></Style>
+<Style TargetType="TextBlock"><Setter Property="TextWrapping" Value="Wrap"/><Setter Property="HorizontalAlignment" Value="Left"/><Setter Property="FontSize" Value="14"/><Setter Property="Foreground" Value="{DynamicResource ColorBrush1}"/></Style>
+<Style TargetType="FlowDocument"><Setter Property="FontFamily" Value="Microsoft YaHei UI"/><Setter Property="FontSize" Value="14"/><Setter Property="TextAlignment" Value="Left"/><Setter Property="Foreground" Value="{DynamicResource ColorBrush1}"/></Style>
+<Style TargetType="FlowDocumentScrollViewer"><Setter Property="IsSelectionEnabled" Value="False"/><Setter Property="VerticalScrollBarVisibility" Value="Hidden"/><Setter Property="Margin" Value="0"/></Style>
+<Style x:Key="H5" TargetType="Paragraph"><Setter Property="FontSize" Value="14"/><Setter Property="Margin" Value="0,8,0,1"/><Setter Property="Foreground" Value="{DynamicResource ColorBrush4}"/></Style>
+<Style  TargetType="TextBox" x:Key="InlineCode">
+    <Setter Property="FontSize" Value="14" />
+    <Setter Property="IsReadOnly" Value="True" />
+    <Setter Property="Margin" Value="2,0,2,-4" />
+    <Setter Property="FontFamily" Value="Consolas" />
+    <Setter Property="Foreground" Value="{DynamicResource ColorBrush1}" />
+    <Setter Property="Height" Value="18" />
+    <Setter Property="Template">
+        <Setter.Value>
+            <ControlTemplate TargetType="TextBox">
+                <Border Background="{DynamicResource ColorBrush6}" Opacity="0.9" BorderBrush="{DynamicResource ColorBrush4}" BorderThickness="0" CornerRadius="5" Padding="4,0.2"> 
+                    <ScrollViewer x:Name="PART_ContentHost" Focusable="false" HorizontalScrollBarVisibility="Hidden" VerticalScrollBarVisibility="Hidden" />
+                </Border>
+                <ControlTemplate.Triggers>
+                </ControlTemplate.Triggers>
+            </ControlTemplate>
+        </Setter.Value>
+    </Setter>
+</Style>
+<Style  TargetType="TextBox" x:Key="BlockCode">
+    <Setter Property="Foreground" Value="{DynamicResource ColorBrush1}" />
+    <Setter Property="FontSize" Value="14" />
+    <Setter Property="IsReadOnly" Value="True" />
+    <Setter Property="FontFamily" Value="Consolas" />
+    <Setter Property="Template">
+        <Setter.Value>
+            <ControlTemplate TargetType="TextBox">
+                <Border Background="{DynamicResource ColorBrush7}" Opacity="0.8" BorderBrush="{DynamicResource ColorBrush4}" BorderThickness="0" CornerRadius="0,0,5,5" Padding="16,8,16,12"> 
+                    <ScrollViewer x:Name="PART_ContentHost" Focusable="false" HorizontalScrollBarVisibility="Hidden" VerticalScrollBarVisibility="Hidden" />
+                </Border>
+            </ControlTemplate>
+        </Setter.Value>
+    </Setter>
+</Style>
+<Style x:Key="Lp" TargetType="Paragraph"><Setter Property="LineHeight" Value="16"/><Setter Property="TextIndent" Value="0"/></Style>
+<Style x:Key="BlockCodeBorder" TargetType="Border"><Setter Property="Background" Value="{DynamicResource ColorBrush4}"/><Setter Property="Opacity" Value="0.8"/><Setter Property="CornerRadius" Value="5"/><Setter Property="Margin" Value="2"/></Style>
+<Style x:Key="H4" TargetType="Paragraph"><Setter Property="FontSize" Value="16"/><Setter Property="Margin" Value="0,10,0,1"/><Setter Property="FontWeight" Value="Bold"/><Setter Property="Foreground" Value="{DynamicResource ColorBrush4}"/></Style>
+<Style x:Key="ContentStack" TargetType="StackPanel"><Setter Property="Margin" Value="20,40,20,20"/></Style>
+<Style x:Key="H3" TargetType="Paragraph"><Setter Property="FontSize" Value="18"/><Setter Property="Margin" Value="0,10,0,3"/><Setter Property="FontWeight" Value="Bold"/><Setter Property="Foreground" Value="{DynamicResource ColorBrush4}"/></Style>
+<Style x:Key="Card" TargetType="local:MyCard"><Setter Property="Margin" Value="0,5"/></Style>
+
+</StackPanel.Resources>
+<local:MyCard Title="行内链接" CanSwap="True" IsSwaped="False" Style="{StaticResource Card}" >
+<StackPanel Style="{StaticResource ContentStack}">
+<FlowDocumentScrollViewer >
+<FlowDocument>
+<Paragraph>构建器支持行内链接。</Paragraph><Paragraph>如 <TextBox Style="{StaticResource InlineCode}">[打开示例网页](https://example.com)</TextBox> 方括号内是链接文本，圆括号内是链接 URL</Paragraph><Paragraph>这是上面的显示效果：<Underline><local:MyTextButton Margin="0,0,0,-2" EventType="打开网页" EventData="https://example.com">打开示例网页</local:MyTextButton></Underline></Paragraph><Paragraph Style="{StaticResource H3}">更多功能</Paragraph><Paragraph>从 Pagebuilder 0.14.3 起，构建起支持除打开链接外的其他功能</Paragraph><Paragraph Style="{StaticResource H4}">打开其它页面</Paragraph><Paragraph>你可以使用构建器在主页中插入打开其它主页地址的链接，只需要在主页的 json url 前插入 <TextBox Style="{StaticResource InlineCode}">pcl:homepage:</TextBox> 
+如 <TextBox Style="{StaticResource InlineCode}">[打开新闻主页](pcl:homepage:https://news.bugjump.net/News.json)</TextBox></Paragraph><Paragraph>http 与 https 均可使用。</Paragraph><Paragraph>这是上面的显示效果：<Underline><local:MyTextButton Margin="0,0,0,-2" EventType="打开帮助" EventData="https://news.bugjump.net/News.json">打开新闻主页</local:MyTextButton></Underline></Paragraph><Paragraph>为了方便使用，即使链接结尾不是<TextBox Style="{StaticResource InlineCode}">.json</TextBox>，构建器也会自动补全。
+如你输入以下链接</Paragraph><BlockUIContainer>
+<Border Style="{StaticResource BlockCodeBorder}" >
+<StackPanel Margin="0,2,0,0">
+<TextBlock Foreground="White" FontSize="14" Text="" Margin="10,4"/>
+<TextBox Style="{StaticResource BlockCode}" Text="pcl:homepage:https://news.bugjump.net/News&#x000A;pcl:homepage:https://news.bugjump.net/News/&#x000A;pcl:homepage:https://news.bugjump.net/News.xaml"/>
+</StackPanel>
+</Border>
+</BlockUIContainer><Paragraph>打开的主页的 json 均是 <TextBox Style="{StaticResource InlineCode}">https://news.bugjump.net/News.json</TextBox></Paragraph><Paragraph Style="{StaticResource H4}">启动游戏</Paragraph>你可以使用构建器在主页中插入启动特定游戏的链接，并可进入特定服务器，链接语法为
+<BlockUIContainer>
+<Border Style="{StaticResource BlockCodeBorder}" >
+<StackPanel Margin="0,2,0,0">
+<TextBlock Foreground="White" FontSize="14" Text="" Margin="10,4"/>
+<TextBox Style="{StaticResource BlockCode}" Text="pcl:launch://[游戏版本]/[服务器]"/>
+</StackPanel>
+</Border>
+</BlockUIContainer><Paragraph><Bold>游戏版本</Bold>: 可选，待启动的版本，若留空（或填写 <TextBox Style="{StaticResource InlineCode}">current</TextBox> ）将启动启动期当前选中的版本
+<Bold>服务器</Bold>: 可选，服务器的 IP 或域名，若填写则在游戏启动后自动加入加入指定的服务器</Paragraph><Paragraph Style="{StaticResource H5}">例</Paragraph><List>
+<ListItem><Paragraph Style="{StaticResource Lp}">启动 1.12.2 <TextBox Style="{StaticResource InlineCode}">pcl:launch://1.12.2</TextBox></Paragraph></ListItem>
+<ListItem><Paragraph Style="{StaticResource Lp}">启动 1.12.2 并加入 Hypixel 服务器 <TextBox Style="{StaticResource InlineCode}">pcl:launch://1.12.2/mc.hypixel.net</TextBox></Paragraph></ListItem>
+<ListItem><Paragraph Style="{StaticResource Lp}">启动当前版本 <TextBox Style="{StaticResource InlineCode}">pcl:launch://</TextBox></Paragraph></ListItem>
+<ListItem><Paragraph Style="{StaticResource Lp}">启动当前版本并加入 Hypixel 服务器 <TextBox Style="{StaticResource InlineCode}">pcl:launch://current/mc.hypixel.net</TextBox></Paragraph></ListItem>
+</List><Paragraph Style="{StaticResource H4}">今日人品</Paragraph>使用以下链接将使用弹窗展示今日人品
+<BlockUIContainer>
+<Border Style="{StaticResource BlockCodeBorder}" >
+<StackPanel Margin="0,2,0,0">
+<TextBlock Foreground="White" FontSize="14" Text="" Margin="10,4"/>
+<TextBox Style="{StaticResource BlockCode}" Text="pcl:jrrp://"/>
+</StackPanel>
+</Border>
+</BlockUIContainer><Paragraph Style="{StaticResource H4}">清理垃圾</Paragraph>使用以下链接将清理游戏垃圾
+<BlockUIContainer>
+<Border Style="{StaticResource BlockCodeBorder}" >
+<StackPanel Margin="0,2,0,0">
+<TextBlock Foreground="White" FontSize="14" Text="" Margin="10,4"/>
+<TextBox Style="{StaticResource BlockCode}" Text="pcl:rubclean://"/>
+</StackPanel>
+</Border>
+</BlockUIContainer><Paragraph Style="{StaticResource H4}">内存优化</Paragraph>使用以下链接将调用内存优化
+<BlockUIContainer>
+<Border Style="{StaticResource BlockCodeBorder}" >
+<StackPanel Margin="0,2,0,0">
+<TextBlock Foreground="White" FontSize="14" Text="" Margin="10,4"/>
+<TextBox Style="{StaticResource BlockCode}" Text="pcl:ramclean://"/>
+</StackPanel>
+</Border>
+</BlockUIContainer><Paragraph Style="{StaticResource H4}">复制文本</Paragraph>使用以下链接将复制文本
+<BlockUIContainer>
+<Border Style="{StaticResource BlockCodeBorder}" >
+<StackPanel Margin="0,2,0,0">
+<TextBlock Foreground="White" FontSize="14" Text="" Margin="10,4"/>
+<TextBox Style="{StaticResource BlockCode}" Text="pcl:copy://&lt;需要复制的文本&gt;"/>
+</StackPanel>
+</Border>
+</BlockUIContainer><Paragraph Style="{StaticResource H4}">刷新主页</Paragraph>使用以下链接将刷新主页
+<BlockUIContainer>
+<Border Style="{StaticResource BlockCodeBorder}" >
+<StackPanel Margin="0,2,0,0">
+<TextBlock Foreground="White" FontSize="14" Text="" Margin="10,4"/>
+<TextBox Style="{StaticResource BlockCode}" Text="pcl:refresh_homepage://"/>
+</StackPanel>
+</Border>
+</BlockUIContainer><Paragraph Style="{StaticResource H4}">下载文件</Paragraph>使用以下链接格式将下载指定文件
+<BlockUIContainer>
+<Border Style="{StaticResource BlockCodeBorder}" >
+<StackPanel Margin="0,2,0,0">
+<TextBlock Foreground="White" FontSize="14" Text="" Margin="10,4"/>
+<TextBox Style="{StaticResource BlockCode}" Text="pcl:download:https://example.com"/>
+</StackPanel>
+</Border>
+</BlockUIContainer>
+</FlowDocument>
+</FlowDocumentScrollViewer>
+</StackPanel>
+</local:MyCard><local:MyCard Title="代码块" CanSwap="True" IsSwaped="False" Style="{StaticResource Card}" >
+<StackPanel Style="{StaticResource ContentStack}">
+<FlowDocumentScrollViewer >
+<FlowDocument>
+<Paragraph Style="{StaticResource H3}">行内代码块</Paragraph><Paragraph>构建器支持行内代码块。</Paragraph><Paragraph>你可以在一行的任意位置添加 <TextBox Style="{StaticResource InlineCode}">codeblock</TextBox> 代码块，就像这样。</Paragraph><Paragraph Style="{StaticResource H3}">块状代码块</Paragraph><Paragraph>从 Pagebuilder 0.14.2 起，构建器支持块状代码块。</Paragraph><Paragraph>但由于 WPF 的诸多限制，现版本的构建器暂不支持语法高亮和行数显示。</Paragraph><BlockUIContainer>
+<Border Style="{StaticResource BlockCodeBorder}" >
+<StackPanel Margin="0,2,0,0">
+<TextBlock Foreground="White" FontSize="14" Text="PYTHON" Margin="10,4"/>
+<TextBox Style="{StaticResource BlockCode}" Text="WELCOME = &quot;Hello World&quot;&#x000A;print(WELCOME)"/>
+</StackPanel>
+</Border>
+</BlockUIContainer>
+</FlowDocument>
+</FlowDocumentScrollViewer>
+</StackPanel>
+</local:MyCard>
+</StackPanel>
